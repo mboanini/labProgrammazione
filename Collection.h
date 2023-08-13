@@ -33,6 +33,7 @@ public:
 
     virtual void addNote(Note * note) = 0;
     virtual void removeNote(const string& key) = 0;
+    virtual void editNote(const string& key, Note * note) = 0;
     virtual int notesNumber() = 0;
 
 

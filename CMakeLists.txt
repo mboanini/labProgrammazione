@@ -3,4 +3,4 @@ project(labProgrammazione)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(labProgrammazione main.cpp Note.cpp Note.h Observer.cpp Observer.h Subject.cpp Subject.h Collection.cpp Collection.h ImportantNotes.cpp ImportantNotes.h User.cpp User.h)
+add_executable(labProgrammazione main.cpp Note.cpp Note.h Observer.cpp Observer.h Subject.cpp Subject.h Collection.cpp Collection.h ImportantNotes.cpp ImportantNotes.h User.cpp User.h NotesCollection.cpp NotesCollection.h)

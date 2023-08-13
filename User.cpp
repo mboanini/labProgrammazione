@@ -21,5 +21,5 @@ void User::detach() {
 }
 
 void User::update() {
-
+    cout<<"Sono presenti"<<subject->notesNumber()<<"note, nella collezione"<<subject->getName();
 }

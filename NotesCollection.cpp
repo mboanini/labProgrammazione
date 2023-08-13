@@ -1,23 +1,19 @@
 //
-// Created by margherita on 8/11/2023.
+// Created by boa on 8/13/2023.
 //
 
-#include "ImportantNotes.h"
+#include "NotesCollection.h"
 
-ImportantNotes::ImportantNotes(const string &name) : Collection(name) {}
+NotesCollection::NotesCollection(const string &name) : Collection(name) {}
 
-ImportantNotes::~ImportantNotes() {}
+NotesCollection::~NotesCollection() {}
 
-void ImportantNotes::addNote(Note* note){
-    if(note->isImportant()) {
-        notes.insert(make_pair(note->getTitle(), note));
-        notify();
-    }
-    else
-        throw runtime_error{"Errore: nota non importante"};
+void NotesCollection::addNote(Note *note) {
+    notes.insert(make_pair(note->getTitle(), note));
+    notify();
 }
 
-void ImportantNotes::removeNote(const string& key){
+void NotesCollection::removeNote(const string &key) {
     auto note = notes.find(key);
     if(note != notes.end()) {
         if (!note->second->isBlocked()) {
@@ -30,7 +26,7 @@ void ImportantNotes::removeNote(const string& key){
         throw runtime_error{"Errore: nota non trovata"};
 }
 
-void ImportantNotes::editNote(const string &key, Note *note) {
+void NotesCollection::editNote(const string &key, Note *note) {
     auto edit = notes.find(key);
     if(edit != notes.end()){
         if (!edit->second->isBlocked()) {
@@ -38,13 +34,8 @@ void ImportantNotes::editNote(const string &key, Note *note) {
                 edit->second->setTitle(note->getTitle());
             else if(!(edit->second->getText() == note->getText()))
                 edit->second->setText(note->getText());
-            else if(edit->second->isImportant() != note->isImportant()) {
+            else if(edit->second->isImportant() != note->isImportant())
                 edit->second->setImportant(note->isImportant());
-                if (!edit->second->isImportant()) {
-                    notes.erase(edit);
-                    notify();
-                }
-            }
             else if(edit->second->isBlocked() != note->isBlocked())
                 edit->second->setBlocked(note->isBlocked());
         } else
@@ -54,6 +45,6 @@ void ImportantNotes::editNote(const string &key, Note *note) {
         throw runtime_error{"Errore: nota non trovata"};
 }
 
-int ImportantNotes::notesNumber() {
+int NotesCollection::notesNumber() {
     return notes.size();
 }
