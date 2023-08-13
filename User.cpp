@@ -1,17 +1,25 @@
 //
-// Created by boa on 5/17/2023.
+// Created by margherita on 8/12/2023.
 //
 
 #include "User.h"
 
-void User::update() {
+User::User(Collection *subject) : subject(subject) {}
 
+User::~User() {}
+
+Collection *User::getSubject() const {
+    return subject;
 }
 
 void User::attach() {
-    subject->subscribe(this);
+    subject -> subscribe(this);
 }
 
 void User::detach() {
-    subject->unsubscribe(this);
+    subject -> unsubscribe(this);
+}
+
+void User::update() {
+
 }

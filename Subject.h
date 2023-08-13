@@ -9,10 +9,10 @@
 
 class Subject {
 public:
-    virtual void subscribe(Observer * o);
-    virtual void unsubscribe(Observer * o);
+    virtual void subscribe(Observer * o) = 0;
+    virtual void unsubscribe(Observer * o) = 0;
     virtual void notify() = 0;
-    virtual ~Subject() {};
+    virtual ~Subject() = default;;
 
 };
 

@@ -4,8 +4,7 @@
 
 #include "Note.h"
 
-Note::Note(const string &title, const string &text, const string &category) : title(title), text(text),
-                                                                              category(category) {}
+Note::Note(const string &title, const string &text) : title(title), text(text) {}
 
 Note::~Note() {}
 
@@ -14,7 +13,10 @@ const string &Note::getTitle() const {
 }
 
 void Note::setTitle(const string &title) {
-    Note::title = title;
+    if(!blocked)
+        Note::title = title;
+    else
+        throw runtime_error{"Impossibile modificare il titolo"};
 }
 
 const string &Note::getText() const {
@@ -22,15 +24,10 @@ const string &Note::getText() const {
 }
 
 void Note::setText(const string &text) {
-    Note::text = text;
-}
-
-const string &Note::getCategory() const {
-    return category;
-}
-
-void Note::setCategory(const string &category) {
-    Note::category = category;
+    if(!blocked)
+        Note::text = text;
+    else
+        throw runtime_error{"Impossibile modificare il testo"};
 }
 
 bool Note::isImportant() const {
@@ -38,7 +35,10 @@ bool Note::isImportant() const {
 }
 
 void Note::setImportant(bool important) {
-    Note::important = important;
+    if(!blocked)
+        Note::important = important;
+    else
+        throw runtime_error{"Impossibile modificare"};
 }
 
 bool Note::isBlocked() const {
@@ -48,20 +48,3 @@ bool Note::isBlocked() const {
 void Note::setBlocked(bool blocked) {
     Note::blocked = blocked;
 }
-
-void Note::subscribe(Observer *o) {
-    observers.push_back(o);
-}
-
-void Note::unsubscribe(Observer *o) {
-    observers.remove(0);
-}
-
-void Note::notify() {
-    for (auto itr = begin(observers); itr != end(observers); itr++){
-        (*itr)->update();
-    }
-}
-
-
-
