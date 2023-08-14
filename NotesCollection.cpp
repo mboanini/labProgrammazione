@@ -20,10 +20,10 @@ void NotesCollection::removeNote(const string &key) {
             notes.erase(note);
             notify();
         } else
-            throw runtime_error{"Errore: nota bloccata"};
+            cout<<"\n Errore: nota bloccata";
     }
     else
-        throw runtime_error{"Errore: nota non trovata"};
+        cout<<"\nErrore: nota non trovata";
 }
 
 void NotesCollection::editNote(const string &key, Note *note) {
@@ -39,10 +39,10 @@ void NotesCollection::editNote(const string &key, Note *note) {
             else if(edit->second->isBlocked() != note->isBlocked())
                 edit->second->setBlocked(note->isBlocked());
         } else
-            throw runtime_error{"Errore: nota bloccata"};
+            cout<<"\nErrore: nota bloccata";
     }
     else
-        throw runtime_error{"Errore: nota non trovata"};
+        cout<<"\nErrore: nota non trovata";
 }
 
 int NotesCollection::notesNumber() {

@@ -14,7 +14,7 @@ void ImportantNotes::addNote(Note* note){
         notify();
     }
     else
-        throw runtime_error{"Errore: nota non importante"};
+        cout<<"\nErrore: nota non importante";
 }
 
 void ImportantNotes::removeNote(const string& key){
@@ -24,10 +24,10 @@ void ImportantNotes::removeNote(const string& key){
             notes.erase(note);
             notify();
         } else
-            throw runtime_error{"Errore: nota bloccata"};
+            cout<<"\nErrore: nota bloccata";
     }
     else
-        throw runtime_error{"Errore: nota non trovata"};
+        cout<<"\nErrore: nota non trovata";
 }
 
 void ImportantNotes::editNote(const string &key, Note *note) {
@@ -48,10 +48,10 @@ void ImportantNotes::editNote(const string &key, Note *note) {
             else if(edit->second->isBlocked() != note->isBlocked())
                 edit->second->setBlocked(note->isBlocked());
         } else
-            throw runtime_error{"Errore: nota bloccata"};
+            cout<<"\nErrore: nota bloccata";
     }
     else
-        throw runtime_error{"Errore: nota non trovata"};
+        cout<<"\nErrore: nota non trovata";
 }
 
 int ImportantNotes::notesNumber() {

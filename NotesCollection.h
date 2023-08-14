@@ -19,7 +19,6 @@ public:
     void removeNote(const string& key) override;
     void editNote(const string& key, Note * note) override;
     int notesNumber() override;
-
 };
 
 
