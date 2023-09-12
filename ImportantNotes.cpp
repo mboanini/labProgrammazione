@@ -9,12 +9,16 @@ ImportantNotes::ImportantNotes(const string &name) : Collection(name) {}
 ImportantNotes::~ImportantNotes() {}
 
 void ImportantNotes::addNote(Note* note){
-    if(note->isImportant()) {
-        notes.insert(make_pair(note->getTitle(), note));
-        notify();
+    auto itr = notes.find(note->getTitle());
+    if(itr == notes.end()) {
+        if (note->isImportant()) {
+            notes.insert(make_pair(note->getTitle(), note));
+            notify();
+        } else
+            cout << "\nErrore: nota non importante\n";
     }
     else
-        cout<<"\nErrore: nota non importante";
+        cout << "\nErrore: titolo già presente, cambiare titolo\n";
 }
 
 void ImportantNotes::removeNote(const string& title){
@@ -24,10 +28,10 @@ void ImportantNotes::removeNote(const string& title){
             notes.erase(note);
             notify();
         } else
-            cout<<"\nErrore: nota bloccata";
+            cout<<"\nErrore: nota bloccata\n";
     }
     else
-        cout<<"\nErrore: nota non trovata";
+        cout<<"\nErrore: nota non trovata\n";
 }
 
 void ImportantNotes::editNote(const string &title, Note *note) {
@@ -48,10 +52,10 @@ void ImportantNotes::editNote(const string &title, Note *note) {
             else if(edit->second->isBlocked() != note->isBlocked())
                 edit->second->setBlocked(note->isBlocked());
         } else
-            cout<<"\nErrore: nota bloccata";
+            cout<<"\nErrore: nota bloccata\n";
     }
     else
-        cout<<"\nErrore: nota non trovata";
+        cout<<"\nErrore: nota non trovata\n";
 }
 
 int ImportantNotes::notesNumber() {

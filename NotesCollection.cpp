@@ -9,8 +9,13 @@ NotesCollection::NotesCollection(const string &name) : Collection(name) {}
 NotesCollection::~NotesCollection() {}
 
 void NotesCollection::addNote(Note *note) {
-    notes.insert(make_pair(note->getTitle(), note));
-    notify();
+    auto itr = notes.find(note->getTitle());
+    if(itr == notes.end()) {
+        notes.insert(make_pair(note->getTitle(), note));
+        notify();
+    }
+    else
+        cout << "\nTitolo già presente, cambiare titolo\n";
 }
 
 void NotesCollection::removeNote(const string &title) {
@@ -20,10 +25,10 @@ void NotesCollection::removeNote(const string &title) {
             notes.erase(note);
             notify();
         } else
-            cout<<"\n Errore: nota bloccata";
+            cout<<"\nErrore: nota bloccata\n";
     }
     else
-        cout<<"\nErrore: nota non trovata";
+        cout<<"\nErrore: nota non trovata\n";
 }
 
 void NotesCollection::editNote(const string &title, Note *note) {
@@ -39,10 +44,10 @@ void NotesCollection::editNote(const string &title, Note *note) {
             else if(edit->second->isBlocked() != note->isBlocked())
                 edit->second->setBlocked(note->isBlocked());
         } else
-            cout<<"\nErrore: nota bloccata";
+            cout<<"\nErrore: nota bloccata\n";
     }
     else
-        cout<<"\nErrore: nota non trovata";
+        cout<<"\nErrore: nota non trovata\n";
 }
 
 int NotesCollection::notesNumber() {
