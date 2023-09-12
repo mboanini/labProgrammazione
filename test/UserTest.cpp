@@ -4,10 +4,10 @@
 
 #include "gtest/gtest.h"
 #include "../User.h"
-#include "../Collection.h"
+#include "../NotesCollection.h"
 
 TEST(User, Constructor){
-    Collection * subject = new Collection("name");
+    Collection * subject = new NotesCollection("name");
     User user(subject);
     ASSERT_EQ(subject, user.getSubject());
 }

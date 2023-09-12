@@ -4,7 +4,6 @@
 
 #include "gtest/gtest.h"
 #include "../ImportantNotes.h"
-#include "../Note.h"
 
 #include <iostream>
 using namespace std;
@@ -20,11 +19,11 @@ TEST(ImportantNotes, addNote){
     string title = "title";
     string text = "text";
     ImportantNotes important(name);
-    Note * note(title, text);
-    important.addNote(note);
+    Note note(title, text);
+    important.addNote(&note);
     ASSERT_EQ(0, important.notesNumber());
-    note->setImportant(true);
-    important.addNote(note);
+    note.setImportant(true);
+    important.addNote(&note);
     ASSERT_EQ(1, important.notesNumber());
 }
 
@@ -32,14 +31,15 @@ TEST(ImportantNotes, removeNote){
     string name = "name";
     string title = "title";
     string text = "text";
-    string key = "key";
     ImportantNotes important(name);
-    Note * note(title, text);
-    note->setImportant(true);
-    important.addNote(note);
-    important.removeNote(key);
+    Note note(title, text);
+    note.setImportant(true);
+    important.addNote(&note);
+    important.removeNote(title);
     ASSERT_EQ(0, important.notesNumber());
-    important.getNotes().find(key)->second->setBlocked(true);
+    important.addNote(&note);
+    important.getNotes().find(title)->second->setBlocked(true);
+    important.removeNote(title);
     ASSERT_EQ(1, important.notesNumber());
 }
 
@@ -48,16 +48,15 @@ TEST(ImportantNotes, editNote){
     string title = "title";
     string text = "text";
     ImportantNotes important(name);
-    Note * note(title, text);
-    note->setImportant(true);
-    important.addNote(note);
+    Note note(title, text);
+    note.setImportant(true);
+    important.addNote(&note);
     string title1 = "title1";
     string text1 = "text";
-    string key = "key";
-    Note * note1(title1, text1);
-    note1->setImportant(true);
-    important.editNote(key, note1);
-    ASSERT_EQ(title1, note->getTitle());
+    Note note1(title1, text1);
+    note1.setImportant(true);
+    important.editNote(title, &note1);
+    ASSERT_EQ(title1, note.getTitle());
 }
 
 

@@ -32,8 +32,8 @@ public:
     void setNotes(const map<string, Note *> &notes);
 
     virtual void addNote(Note * note) = 0;
-    virtual void removeNote(const string& key) = 0;
-    virtual void editNote(const string& key, Note * note) = 0;
+    virtual void removeNote(const string& title) = 0;
+    virtual void editNote(const string& title, Note * note) = 0;
     virtual int notesNumber() = 0;
 
 

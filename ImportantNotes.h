@@ -15,8 +15,8 @@ public:
     ~ImportantNotes() override;
 
     void addNote(Note * note) override;
-    void removeNote(const string& key) override;
-    void editNote(const string& key, Note * note) override;
+    void removeNote(const string& title) override;
+    void editNote(const string& title, Note * note) override;
     int notesNumber() override;
 };
 

@@ -17,8 +17,8 @@ void ImportantNotes::addNote(Note* note){
         cout<<"\nErrore: nota non importante";
 }
 
-void ImportantNotes::removeNote(const string& key){
-    auto note = notes.find(key);
+void ImportantNotes::removeNote(const string& title){
+    auto note = notes.find(title);
     if(note != notes.end()) {
         if (!note->second->isBlocked()) {
             notes.erase(note);
@@ -30,8 +30,8 @@ void ImportantNotes::removeNote(const string& key){
         cout<<"\nErrore: nota non trovata";
 }
 
-void ImportantNotes::editNote(const string &key, Note *note) {
-    auto edit = notes.find(key);
+void ImportantNotes::editNote(const string &title, Note *note) {
+    auto edit = notes.find(title);
     if(edit != notes.end()){
         if (!edit->second->isBlocked()) {
             if(!(edit->second->getTitle()==note->getTitle()))

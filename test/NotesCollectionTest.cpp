@@ -4,7 +4,6 @@
 
 #include "gtest/gtest.h"
 #include "../NotesCollection.h"
-#include "../Note.h"
 
 #include <iostream>
 using namespace std;
@@ -20,38 +19,38 @@ TEST(NotesCollection, addNote){
     string title = "title";
     string text = "text";
     NotesCollection notesCollection(name);
-    Note * note(title, text);
-    notesCollection.addNote(note);
+    Note note(title, text);
+    notesCollection.addNote(&note);
     ASSERT_EQ(1, notesCollection.notesNumber());
 }
 
-TEST(ImportantNotes, removeNote){
+TEST(NotesCollection, removeNote){
     string name = "name";
     string title = "title";
     string text = "text";
-    string key = "key";
     NotesCollection notesCollection(name);
-    Note * note(title, text);
-    notesCollection.addNote(note);
-    notesCollection.removeNote(key);
+    Note note(title, text);
+    notesCollection.addNote(&note);
+    notesCollection.removeNote("title");
     ASSERT_EQ(0, notesCollection.notesNumber());
-    important.getNotes().find(key)->second->setBlocked(true);
+    notesCollection.addNote(&note);
+    notesCollection.getNotes().find("title")->second->setBlocked(true);
+    notesCollection.removeNote("title");
     ASSERT_EQ(1, notesCollection.notesNumber());
 }
 
-TEST(ImportantNotes, editNote){
+TEST(NotesCollection, editNote){
     string name = "name";
     string title = "title";
     string text = "text";
     NotesCollection notesCollection(name);
-    Note * note(title, text);
-    notesCollection.addNote(note);
+    Note note(title, text);
+    notesCollection.addNote(&note);
     string title1 = "title1";
     string text1 = "text";
-    string key = "key";
-    Note * note1(title1, text1);
-    notesCollection.editNote(key, note1);
-    ASSERT_EQ(title1, note->getTitle());
+    Note note1(title1, text1);
+    notesCollection.editNote("title", &note1);
+    ASSERT_EQ(title1, note.getTitle());
 }
 
 
