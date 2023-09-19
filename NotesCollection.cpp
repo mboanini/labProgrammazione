@@ -25,7 +25,7 @@ void NotesCollection::removeNote(const string &title) {
             notes.erase(note);
             notify();
         } else
-            cout<<"\nErrore: nota bloccata\n";
+            cout<<"\nErrore: nota non rimovibile, poiché bloccata\n";
     }
     else
         cout<<"\nErrore: nota non trovata\n";
@@ -44,7 +44,7 @@ void NotesCollection::editNote(const string &title, Note *note) {
             else if(edit->second->isBlocked() != note->isBlocked())
                 edit->second->setBlocked(note->isBlocked());
         } else
-            cout<<"\nErrore: nota bloccata\n";
+            cout<<"\nErrore: nota non modificabile, poiché bloccata\n";
     }
     else
         cout<<"\nErrore: nota non trovata\n";

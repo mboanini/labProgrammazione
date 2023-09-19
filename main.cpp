@@ -36,11 +36,12 @@ int main() {
     //prova addNote per nota non importante
     important->addNote(note2);
     cout<<"C'è "<< important->notesNumber() <<" nota nella collezione: "<<important->getName()<<"\n";
+    cout<<endl;
 
     note3->setImportant(true);
     important->addNote(note3);
     cout<<"Ci sono "<<important->notesNumber()<<" note nella collezione: "<<important->getName()<<"\n";
-
+    cout<<endl;
 
     notesCollection3->addNote(note3);
     notesCollection3->addNote(note4);
@@ -56,6 +57,7 @@ int main() {
 
 
     //editNote
+    cout<<"\nTesto non modificato: "<<note6->getText();
     notesCollection3->editNote("Oculista", note7);
     cout<<"\nTesto modificato: "<<note6->getText()<<"\n";
     //editNote e removeNote per nota non modificabile
@@ -66,6 +68,7 @@ int main() {
     //addNote per nota con titolo uguale a una nota già presente
     note8->setImportant(true);
     important->addNote(note8);
+    cout<<endl;
 
     cout<<"Ci sono "<<notesCollection1->notesNumber()<<" note nella collezione: "<<notesCollection1->getName()<<"\n";
     cout<<"Ci sono "<<notesCollection2->notesNumber()<<" note nella collezione: "<<notesCollection2->getName()<<"\n";
