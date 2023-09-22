@@ -16,7 +16,7 @@ void Note::setTitle(const string &title) {
     if(!blocked)
         Note::title = title;
     else
-        throw runtime_error{"Impossibile modificare il titolo"};
+        cout << "Errore: Impossibile modificare il titolo";
 }
 
 const string &Note::getText() const {
@@ -27,7 +27,7 @@ void Note::setText(const string &text) {
     if(!blocked)
         Note::text = text;
     else
-        throw runtime_error{"Impossibile modificare il testo"};
+        cout << "Errore: Impossibile modificare il testo";
 }
 
 bool Note::isImportant() const {
@@ -38,7 +38,7 @@ void Note::setImportant(bool important) {
     if(!blocked)
         Note::important = important;
     else
-        throw runtime_error{"Impossibile modificare"};
+        cout << "Errore: Impossibile modificare";
 }
 
 bool Note::isBlocked() const {
