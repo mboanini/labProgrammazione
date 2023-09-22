@@ -25,6 +25,15 @@ TEST(ImportantNotes, addNote){
     note.setImportant(true);
     important.addNote(&note);
     ASSERT_EQ(1, important.notesNumber());
+    string name1 = "name1";
+    string title1 = "title1";
+    string text1 = "text1";
+    Note note1(title1, text1);
+    important.addNote(&note1);
+    ASSERT_EQ(1, important.notesNumber());
+    note1.setImportant(true);
+    important.addNote(&note1);
+    ASSERT_EQ(2, important.notesNumber());
 }
 
 TEST(ImportantNotes, removeNote){
@@ -55,9 +64,10 @@ TEST(ImportantNotes, editNote){
     string text1 = "text";
     Note note1(title1, text1);
     note1.setImportant(true);
+    important.getNotes().find(title)->second->setBlocked(true);
+    important.editNote(title, &note1);
+    ASSERT_EQ(title, note.getTitle());
+    important.getNotes().find(title)->second->setBlocked(false);
     important.editNote(title, &note1);
     ASSERT_EQ(title1, note.getTitle());
 }
-
-
-

@@ -70,6 +70,11 @@ int main() {
     important->addNote(note8);
     cout<<endl;
 
+    //searchNote
+    notesCollection1->searchNote("Viaggi");
+    notesCollection3->searchNote("Viaggi");
+    cout<<endl;
+
     cout<<"Ci sono "<<notesCollection1->notesNumber()<<" note nella collezione: "<<notesCollection1->getName()<<"\n";
     cout<<"Ci sono "<<notesCollection2->notesNumber()<<" note nella collezione: "<<notesCollection2->getName()<<"\n";
     cout<<"Ci sono "<<notesCollection3->notesNumber()<<" note nella collezione: "<<notesCollection3->getName()<<"\n";

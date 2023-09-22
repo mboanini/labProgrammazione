@@ -22,6 +22,12 @@ TEST(NotesCollection, addNote){
     Note note(title, text);
     notesCollection.addNote(&note);
     ASSERT_EQ(1, notesCollection.notesNumber());
+    string name1 = "name1";
+    string title1 = "title1";
+    string text1 = "text1";
+    Note note1(title1, text1);
+    notesCollection.addNote(&note1);
+    ASSERT_EQ(2, notesCollection.notesNumber());
 }
 
 TEST(NotesCollection, removeNote){
@@ -49,6 +55,10 @@ TEST(NotesCollection, editNote){
     string title1 = "title1";
     string text1 = "text";
     Note note1(title1, text1);
+    notesCollection.getNotes().find("title")->second->setBlocked(true);
+    notesCollection.editNote("title", &note1);
+    ASSERT_EQ(title, note.getTitle());
+    notesCollection.getNotes().find("title")->second->setBlocked(false);
     notesCollection.editNote("title", &note1);
     ASSERT_EQ(title1, note.getTitle());
 }

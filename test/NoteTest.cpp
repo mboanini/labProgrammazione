@@ -27,6 +27,10 @@ TEST(Note, setTitle){
     string title = "title";
     string text = "text";
     Note note(title,text);
+    note.setBlocked(true);
+    note.setTitle("ciao");
+    ASSERT_EQ("title", note.getTitle());
+    note.setBlocked(false);
     note.setTitle("ciao");
     ASSERT_EQ("ciao",note.getTitle());
 }
@@ -42,8 +46,12 @@ TEST(Note, setText){
     string title = "title";
     string text = "text";
     Note note(title,text);
-    note.setText("mi chiamo luigi");
-    ASSERT_EQ("mi chiamo luigi",note.getText());
+    note.setBlocked(true);
+    note.setText("text1");
+    ASSERT_EQ("text", note.getText());
+    note.setBlocked(false);
+    note.setText("text1");
+    ASSERT_EQ("text1",note.getText());
 }
 
 TEST(Note, isImportant){
@@ -57,6 +65,10 @@ TEST(Note, setImportant){
     string title = "title";
     string text = "text";
     Note note(title,text);
+    note.setBlocked(true);
+    note.setImportant(true);
+    ASSERT_FALSE(note.isImportant());
+    note.setBlocked(false);
     note.setImportant(true);
     ASSERT_TRUE(note.isImportant());
 }

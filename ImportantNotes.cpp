@@ -61,3 +61,14 @@ void ImportantNotes::editNote(const string &title, Note *note) {
 int ImportantNotes::notesNumber() {
     return notes.size();
 }
+
+void ImportantNotes::searchNote(const string &title) {
+    auto itr = notes.find(title);
+    if(itr!=notes.end()){
+        cout<<"Nota trovata!"<<endl;
+        cout<<"Titolo: "<<itr->second->getTitle()<<endl;
+        cout<<"Testo: "<<itr->second->getText()<<endl;
+    }
+    else
+        cout<<"\nErrore: nota non trovata"<<endl;
+}
