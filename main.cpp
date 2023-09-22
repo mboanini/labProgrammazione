@@ -68,7 +68,6 @@ int main() {
     //addNote per nota con titolo uguale a una nota già presente
     note8->setImportant(true);
     important->addNote(note8);
-    cout<<endl;
 
     //searchNote per nota presente e per nota non presente
     notesCollection1->searchNote("Viaggi");
