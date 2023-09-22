@@ -38,19 +38,28 @@ void ImportantNotes::editNote(const string &title, Note *note) {
     auto edit = notes.find(title);
     if(edit != notes.end()){
         if (!edit->second->isBlocked()) {
-            if(!(edit->second->getTitle()==note->getTitle()))
+            if(!(edit->second->getTitle()==note->getTitle())){
                 edit->second->setTitle(note->getTitle());
-            else if(!(edit->second->getText() == note->getText()))
+                cout<<"\nNota modificata con successo!";
+                cout<<"\nTitolo modificato: "<<edit->second->getTitle();
+            }
+            else if(!(edit->second->getText() == note->getText())){
                 edit->second->setText(note->getText());
+                cout<<"\nNota modificata con successo!";
+                cout<<"\nTesto modificato: "<<edit->second->getText();
+            }
             else if(edit->second->isImportant() != note->isImportant()) {
                 edit->second->setImportant(note->isImportant());
                 if (!edit->second->isImportant()) {
                     notes.erase(edit);
                     notify();
+                    cout<<"\nNota modificata con successo!";
                 }
             }
-            else if(edit->second->isBlocked() != note->isBlocked())
+            else if(edit->second->isBlocked() != note->isBlocked()) {
                 edit->second->setBlocked(note->isBlocked());
+                cout << "\nNota modificata con successo!";
+            }
         } else
             cout<<"\nErrore: nota non modificabile, poiché bloccata\n";
     }
@@ -62,13 +71,15 @@ int ImportantNotes::notesNumber() {
     return notes.size();
 }
 
-void ImportantNotes::searchNote(const string &title) {
+int ImportantNotes::searchNote(const string &title) {
     auto itr = notes.find(title);
     if(itr!=notes.end()){
-        cout<<"Nota trovata!"<<endl;
+        cout<<"\nNota trovata"<<endl;
         cout<<"Titolo: "<<itr->second->getTitle()<<endl;
         cout<<"Testo: "<<itr->second->getText()<<endl;
+        return 0;
     }
     else
         cout<<"\nErrore: nota non trovata"<<endl;
+        return 1;
 }

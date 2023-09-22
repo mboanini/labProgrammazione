@@ -63,4 +63,33 @@ TEST(NotesCollection, editNote){
     ASSERT_EQ(title1, note.getTitle());
 }
 
+TEST(NotesCollection, notesNumber){
+    NotesCollection notesCollection("name");
+    Note note("title", "text");
+    Note note1("title1", "text1");
+    Note note2("title2", "text2");
+    Note note3("title3", "text3");
+    notesCollection.addNote(&note);
+    notesCollection.addNote(&note1);
+    notesCollection.addNote(&note2);
+    notesCollection.addNote(&note3);
+    ASSERT_EQ(4, notesCollection.notesNumber());
+    notesCollection.removeNote("title3");
+    ASSERT_EQ(3, notesCollection.notesNumber());
+}
 
+TEST(NotesCollection, searchNote){
+    NotesCollection notesCollection("name");
+    Note note("title", "text");
+    Note note1("title1", "text1");
+    Note note2("title2", "text2");
+    Note note3("title3", "text3");
+    notesCollection.addNote(&note);
+    notesCollection.addNote(&note1);
+    notesCollection.addNote(&note2);
+    notesCollection.addNote(&note3);
+    int s = notesCollection.searchNote("title");
+    ASSERT_EQ(0, s);
+    int f = notesCollection.searchNote("title4");
+    ASSERT_EQ(1, f);
+}

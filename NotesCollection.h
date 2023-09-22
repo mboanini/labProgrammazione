@@ -18,7 +18,7 @@ public:
     void addNote(Note * note) override;
     void removeNote(const string& title) override;
     void editNote(const string& title, Note * note) override;
-    void searchNote(const string& title) override;
+    int searchNote(const string& title) override;
     int notesNumber() override;
 };
 

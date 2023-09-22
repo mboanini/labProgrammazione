@@ -34,7 +34,7 @@ public:
     virtual void addNote(Note * note) = 0;
     virtual void removeNote(const string& title) = 0;
     virtual void editNote(const string& title, Note * note) = 0;
-    virtual void searchNote(const string& title) = 0;
+    virtual int searchNote(const string& title) = 0;
     virtual int notesNumber() = 0;
 
 

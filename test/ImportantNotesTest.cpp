@@ -71,3 +71,40 @@ TEST(ImportantNotes, editNote){
     important.editNote(title, &note1);
     ASSERT_EQ(title1, note.getTitle());
 }
+
+TEST(ImportantNotes, notesNumber){
+    ImportantNotes important("name");
+    Note note("title", "text");
+    Note note1("title1", "text1");
+    Note note2("title2", "text2");
+    Note note3("title3", "text3");
+    note.setImportant(true);
+    note1.setImportant(true);
+    note2.setImportant(true);
+    important.addNote(&note);
+    important.addNote(&note1);
+    important.addNote(&note2);
+    important.addNote(&note3);
+    ASSERT_EQ(3, important.notesNumber());
+    important.removeNote("title1");
+    ASSERT_EQ(2, important.notesNumber());
+}
+
+TEST(ImportantNotes, searchNote){
+    ImportantNotes important("name");
+    Note note("title", "text");
+    Note note1("title1", "text1");
+    Note note2("title2", "text2");
+    Note note3("title3", "text3");
+    note.setImportant(true);
+    note1.setImportant(true);
+    note2.setImportant(true);
+    important.addNote(&note);
+    important.addNote(&note1);
+    important.addNote(&note2);
+    important.addNote(&note3);
+    int s = important.searchNote("title");
+    ASSERT_EQ(0, s);
+    int f = important.searchNote("title3");
+    ASSERT_EQ(1, f);
+}

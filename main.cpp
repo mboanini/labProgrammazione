@@ -59,7 +59,7 @@ int main() {
     //editNote
     cout<<"\nTesto non modificato: "<<note6->getText();
     notesCollection3->editNote("Oculista", note7);
-    cout<<"\nTesto modificato: "<<note6->getText()<<"\n";
+    cout<<endl;
     //editNote e removeNote per nota non modificabile
     note6->setBlocked(true);
     notesCollection3->editNote("Oculista", note6);
@@ -70,7 +70,7 @@ int main() {
     important->addNote(note8);
     cout<<endl;
 
-    //searchNote
+    //searchNote per nota presente e per nota non presente
     notesCollection1->searchNote("Viaggi");
     notesCollection3->searchNote("Viaggi");
     cout<<endl;
